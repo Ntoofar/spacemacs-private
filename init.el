@@ -53,6 +53,7 @@ values."
      ;; version-control
      scala
      yaml
+     asciidoc
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -323,6 +324,45 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (global-flycheck-mode)
   (setq org-agenda-files (list "~/plan/"))
+
+  (with-eval-after-load 'org
+    ;; 设置todo keywords
+    (setq org-todo-keywords
+          '((sequence "TODO" "DOING" "BLOCKED" "REVIEW" "|" "DONE" "ARCHIVED")))
+
+    ;; 调试好久的颜色，效果超赞！ todo keywords 增加背景色
+    (setf org-todo-keyword-faces '(("TODO" . "org-warning")
+                                   ("DOING" . "yellow")
+                                   ("BLOCKED" . "red")
+                                   ("REVIEW" . "orange")
+                                   ("DONE" . "green")
+                                   ("ARCHIVED" . "blue"))))
+
+    ;; 设置bullet list
+    ;;(setq org-bullets-bullet-list '("☰" "☷" "☯" "☭"))
+
+    ;; 打开org-indent mode
+    ;;(setq org-startup-indented t)
+
+    ;;(setq org-agenda-include-diary nil)
+    ;;(setq org-agenda-files (list  "/Users/ljg/Library/Mobile Documents/com~apple~CloudDocs/org/gtd.org"
+    ;;                              "/Users/ljg/Library/Mobile Documents/com~apple~CloudDocs/org/gtd.org_archive"))
+
+    ;;(setq org-default-notes-file "/Users/ljg/Library/Mobile Documents/com~apple~CloudDocs/org/gtd.org")
+    ;;(setq org-refile-targets '("~/Library/Mobile Documents/com~apple~CloudDocs/org/gtd.org" :maxlevel . 3))
+    ;;)
+
+  ;; org mode tods
+  ;; (setq org-todo-keywords 
+  ;;       '((sequence "TODO" "DOING" "BLOCKED" "REVIEW" "|" "DONE" "ARCHIVED")))
+  ;; Setting Colours (faces) for todo states to give clearer view of work 
+  ;; (setq org-todo-keyword-faces
+  ;;       '(("TODO" . org-warning)
+  ;;         ("DOING" . "yellow")
+  ;;         ("BLOCKED" . "red")
+  ;;         ("REVIEW" . "orange")
+  ;;         ("DONE" . "green")
+  ;;         ("ARCHIVED" .  "blue")))
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
